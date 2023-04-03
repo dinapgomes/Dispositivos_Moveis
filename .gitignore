@@ -1,0 +1,29 @@
+# Flutter/Dart related files
+**/build/
+**/ios/Pods/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
+.pub-cache/
+android/gradle/
+ios/Pods/
+.vscode/
+*.iml
+.metadata
+.DS_Store
+
+# Gitpod related files
+.gitpod/
+.docker/
+.code-workspace
+*.code-workspace
+
+# Other IDE related files
+.idea/
+*.iml
+*.iws
+*.ipr
+*.log
