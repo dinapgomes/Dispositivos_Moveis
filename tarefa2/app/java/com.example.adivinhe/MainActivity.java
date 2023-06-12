@@ -1,9 +1,13 @@
 package com.example.adivinhe;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,10 +18,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        textView = findViewById(R.id.textView);
-        editText = findViewById(R.id.editTextNumber);
+        LinearLayout mainLayout = new LinearLayout(this);
+        mainLayout.setOrientation(LinearLayout.VERTICAL);
+        mainLayout.setGravity(Gravity.CENTER);
+        mainLayout.setPadding(16, 16, 16, 16);
+
+        textView = new TextView(this);
+        textView.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        mainLayout.addView(textView);
+
+        editText = new EditText(this);
+        editText.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        mainLayout.addView(editText);
+
+        setContentView(mainLayout);
+
         generateRandomNumber();
     }
 
