@@ -1,19 +1,22 @@
 package com.example.adivinhe;
-
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
-    private int randomNumber;
     private TextView textView;
     private EditText editText;
+    private Button sendButton;
+    private int randomNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,19 @@ public class MainActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         mainLayout.addView(editText);
 
+        sendButton = new Button(this);
+        sendButton.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        sendButton.setText("Enviar");
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendData();
+            }
+        });
+        mainLayout.addView(sendButton);
+
         setContentView(mainLayout);
 
         generateRandomNumber();
@@ -46,8 +62,12 @@ public class MainActivity extends AppCompatActivity {
         randomNumber = rand.nextInt(101);
     }
 
-    public void checkGuess(View view) {
-        int guess = Integer.parseInt(editText.getText().toString());
+    private void sendData() {
+        String input = editText.getText().toString();
+        // Enviar dados ou realizar alguma ação com o dado fornecido pelo usuário
+
+        // Exemplo de verificação se o número enviado é igual ao número gerado
+        int guess = Integer.parseInt(input);
         String message;
 
         if (guess > randomNumber) {
@@ -62,3 +82,4 @@ public class MainActivity extends AppCompatActivity {
         textView.setText(message);
     }
 }
+
