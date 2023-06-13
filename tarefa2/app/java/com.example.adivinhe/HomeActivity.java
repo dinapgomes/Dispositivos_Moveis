@@ -41,28 +41,10 @@ public class HomeActivity extends AppCompatActivity {
         });
         mainLayout.addView(startButton);
 
-        Button goToMainButton = new Button(this);
-        goToMainButton.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-        goToMainButton.setText("Ir para o Jogo :)");
-        goToMainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToMainActivity();
-            }
-        });
-        mainLayout.addView(goToMainButton);
-
         setContentView(mainLayout);
     }
 
     private void startGame() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    private void goToMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
