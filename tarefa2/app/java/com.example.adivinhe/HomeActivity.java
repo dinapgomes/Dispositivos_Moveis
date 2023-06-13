@@ -1,4 +1,4 @@
-package com.example.adivinhe;
+package com.example.adivinhacao;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
