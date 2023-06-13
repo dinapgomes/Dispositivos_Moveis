@@ -1,4 +1,5 @@
-package com.example.adivinhe;
+package com.example.adivinhacao;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -13,10 +14,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+    private TextView instructionTextView;
     private TextView textView;
     private EditText editText;
     private Button sendButton;
+    private Button resultsButton;
     private int randomNumber;
+    private int numberofattemps = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
         mainLayout.setOrientation(LinearLayout.VERTICAL);
         mainLayout.setGravity(Gravity.CENTER);
         mainLayout.setPadding(16, 16, 16, 16);
+
+        instructionTextView = new TextView(this);
+        instructionTextView.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        instructionTextView.setText("Insira um número:");
+        mainLayout.addView(instructionTextView);
 
         textView = new TextView(this);
         textView.setLayoutParams(new LinearLayout.LayoutParams(
@@ -52,6 +63,19 @@ public class MainActivity extends AppCompatActivity {
         });
         mainLayout.addView(sendButton);
 
+        resultsButton = new Button(this);
+        resultsButton.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        resultsButton.setText("Ir para resultados");
+        resultsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showResults();
+            }
+        });
+        mainLayout.addView(resultsButton);
+
         setContentView(mainLayout);
 
         generateRandomNumber();
@@ -72,14 +96,22 @@ public class MainActivity extends AppCompatActivity {
 
         if (guess > randomNumber) {
             message = "O número é menor!";
+            numberofattemps++;
         } else if (guess < randomNumber) {
             message = "O número é maior!";
+            numberofattemps++;
         } else {
             message = "Parabéns! Você acertou!";
             generateRandomNumber();
+
         }
 
         textView.setText(message);
     }
-}
 
+    private void showResults() {
+        Intent intent = new Intent(this, ResultadoActivity.class);
+        intent.putExtra("numberofattemps", numberofattemps);
+        startActivity(intent);
+    }
+}
